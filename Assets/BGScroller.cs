@@ -27,7 +27,7 @@ public class BGScroller : MonoBehaviour
     void Update()
     {
         repeater = Mathf.Repeat(Time.time * scrollSpeed, 1);
-        pingpong = Mathf.PingPong(Time.time * scrollSpeed, 0.5f) + 0.5f;
+        pingpong = Mathf.PingPong(Time.time * 0.1f, 0.5f) + 0.5f;
 
         offset.x = repeater;
         offset.y = savedOffset.y;
