@@ -293,6 +293,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114610290811175546, guid: 29e2098c238493f47885dd4eb9955356,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224618740900278594, guid: 29e2098c238493f47885dd4eb9955356,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -418,6 +423,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadDrawPhase
       objectReference: {fileID: 0}
+    - target: {fileID: 114610290811175546, guid: 29e2098c238493f47885dd4eb9955356,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610290811175546, guid: 29e2098c238493f47885dd4eb9955356,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29e2098c238493f47885dd4eb9955356, type: 2}
   m_IsPrefabParent: 0
@@ -462,6 +477,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1732791738597722, guid: 6624b07b60e4e7a439302f3c52626446, type: 2}
       propertyPath: m_Name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732791738597722, guid: 6624b07b60e4e7a439302f3c52626446, type: 2}
+      propertyPath: m_TagString
       value: Background
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -539,6 +558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10ad32c2a8a1fe4e8a7df676452d5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 6
+  jumpSpeed: 8
+  gravity: 20
 --- !u!4 &1009161335
 Transform:
   m_ObjectHideFlags: 0

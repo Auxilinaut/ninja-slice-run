@@ -34,6 +34,8 @@ public class BGScroller : MonoBehaviour
 
         GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
 
+        savedOffset = offset;
+
         clr.r = pingpong * 0.5f;
         clr.g = pingpong * 0.25f;
         clr.b = pingpong;
