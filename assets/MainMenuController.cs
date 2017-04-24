@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIController : MonoBehaviour {
+public class MainMenuController : MonoBehaviour {
 
     private GameObject ninja;
     private Animator anim;
@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour {
             {
                 anim.Play("idle");
                 GameObject.FindGameObjectWithTag("Background").GetComponent <BGScroller> ().enabled = false;
-                SceneManager.LoadScene("DrawPhase", LoadSceneMode.Single);
+                AutoFade.LoadLevel("DrawPhase", 1, 1, Color.black);
             }
             else
             {

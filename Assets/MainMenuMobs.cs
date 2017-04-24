@@ -27,19 +27,6 @@ namespace PixelSpriteGenerator
         [HideInInspector]
         public bool mirrorY;
 
-        public enum SpriteTemplate
-        {
-            spaceShipColored,
-            spaceShipColoredLowSat,
-            spaceShipManyColor,
-            treeColored,
-            dragonColored,
-            shrubColored,
-            robotBW
-        }
-
-        public SpriteTemplate SpriteTemplateSelection = SpriteTemplate.spaceShipColored;
-
         private SpriteRenderer sr;
 
         private PsgOptions options;
@@ -78,7 +65,7 @@ namespace PixelSpriteGenerator
                     0, 0, 0, 0, 0, 0
                 }, 6, 12, true, false);
 
-            spritePadding = 1.2f;
+            spritePadding = 1.5f;
 
             options = new PsgOptions()
             {
@@ -133,7 +120,7 @@ namespace PixelSpriteGenerator
                     theSr.sprite = Sprite.Create(tex, new Rect(0, 0, (float)width, (float)height), new Vector2(0.5f, 0.5f), 32f);
 
                     theSr.transform.localScale = new Vector3(-2.5f, -2.5f, -1 * UnityEngine.Random.Range(1.5f, 2.5f));
-                    theSr.transform.position = new Vector2(x * spritePadding * 2, y * spritePadding + UnityEngine.Random.Range(1.0f, 2.0f));
+                    theSr.transform.position = new Vector2(x * spritePadding * 2, y * (spritePadding-1) + UnityEngine.Random.Range(3.0f, 3.5f));
                 }
             }
         }

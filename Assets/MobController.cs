@@ -11,6 +11,11 @@ namespace PixelSpriteGenerator
 
         public GameObject mob;
 
+        //mob floating movement
+        public float floatAmplitude; 
+        public float floatSpeed;
+        private Vector2 tempPos;
+
         [HideInInspector]
         float timer = 2; // 2 sec since last
 
@@ -53,6 +58,9 @@ namespace PixelSpriteGenerator
             mob = GameObject.Find("mob");
             mob.AddComponent<Rigidbody2D>();
             mob.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            tempPos = new Vector3();
+            floatAmplitude = 0.25f;
+            floatSpeed = 2.5f;
         }
 
         private void GetTemplate()
@@ -127,7 +135,9 @@ namespace PixelSpriteGenerator
         // They'll be moving around a lot
         void Update()
         {
-
+            tempPos.Set(9.4f, -1 + floatAmplitude * Mathf.Sin(floatSpeed * Time.time));
+            mob.transform.position = tempPos;
+            Debug.Log("mobPos " + mob.transform.position.x + " " + mob.transform.position.y);
         }
 
     }
