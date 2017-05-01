@@ -125,11 +125,6 @@ public class DrawLine : MonoBehaviour
         return theta;
     }
 
-    /*private int constrictAngle(int angle)
-    {
-        if (angle > )
-    }*/
-
     //method to create line
     private void createLine()
     {

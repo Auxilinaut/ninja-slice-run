@@ -324,18 +324,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 393734245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1312210279}
-        m_MethodName: FadeToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &567681455
@@ -365,6 +354,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595a0866f5f7f1f40abd6b9157e45558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 6
+  jumpSpeed: 20
+  gravity: 20
 --- !u!4 &567681457
 Transform:
   m_ObjectHideFlags: 0
@@ -910,6 +902,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 0}
+  floatAmplitude: 0
+  floatSpeed: 0
   width: 8
   height: 8
   mirrorX: 0
