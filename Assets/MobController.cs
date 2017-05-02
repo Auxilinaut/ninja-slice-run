@@ -137,7 +137,7 @@ namespace PixelSpriteGenerator
         {
             tempPos.Set(9.4f, -1 + floatAmplitude * Mathf.Sin(floatSpeed * Time.time));
             mob.transform.position = tempPos;
-            Debug.Log("mobPos " + mob.transform.position.x + " " + mob.transform.position.y);
+            //Debug.Log("mobPos " + mob.transform.position.x + " " + mob.transform.position.y);
         }
 
     }

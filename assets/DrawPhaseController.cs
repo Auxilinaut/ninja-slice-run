@@ -9,7 +9,10 @@ public class DrawPhaseController : MonoBehaviour
     private GameObject ninja;
     private GameObject mob;
     private Animator anim;
-    private CharacterController controller;
+    private Rigidbody2D bodyNinja;
+    RaycastHit2D hit;
+    private bool groundedNinja = false;
+    private Transform groundCheck;
 
     private DrawLine lines;
 
@@ -24,10 +27,10 @@ public class DrawPhaseController : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     public float speed = 6.0f;
-    public float jumpSpeed = 10000.0f;
-    public float gravity = 5.0f;
+    public float jumpSpeed = 100.0f;
+    public float gravity = .5f;
 
-    private BoxCollider2D floor;
+    private GameObject floor;
 
     private void doneButton() //done button on click
     {
@@ -39,12 +42,12 @@ public class DrawPhaseController : MonoBehaviour
 
     private void Start()
     {
-        floor = new BoxCollider2D();
+        floor = GameObject.Find("groundcheck");
         ninja = GameObject.FindWithTag("Player");
-        ninja.AddComponent<CharacterController>();
-        controller = ninja.GetComponent<CharacterController>();
+        //ninja.AddComponent<CharacterController>();
+        bodyNinja = ninja.GetComponent<Rigidbody2D>();
         anim = ninja.GetComponent<Animator>();
-
+        groundCheck = GameObject.Find("groundCheck").transform;
         lines = GameObject.Find("Main Camera").GetComponent<DrawLine>();
         done = GameObject.Find("Done").GetComponentInChildren<Button>();
         done.onClick.AddListener(doneButton);
@@ -52,28 +55,42 @@ public class DrawPhaseController : MonoBehaviour
 
     private void Update()
     {
+
         if (fighting == true) {
-            string currMove = moves[currentMove];
-            if (currMove == "up")
-            {
-                moveDirection.y = jumpSpeed;
-            }
-            moveDirection.y -= gravity;
-            controller.Move(moveDirection * Time.deltaTime);
+            fight();
         }
-        else{
-
+        else {
             angles = lines.angles;
-
         }
 
-        Debug.Log("angles " + angles[0] + " " + angles[1] + " " + angles[2]);
-        
+        groundedNinja = Physics2D.Linecast(bodyNinja.transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));
+
+        //Debug.Log("angles " + angles[0] + " " + angles[1] + " " + angles[2]);
+
+        Debug.Log("ninjaPos " + ninja.transform.position.x + " " + ninja.transform.position.y);
+        Debug.Log("ninjaGrd " + groundedNinja);
     }
 
     private void fight()
     {
+        string currMove = moves[currentMove];
+        if (currMove == "up")
+        {
+            if (groundedNinja)
+            bodyNinja.velocity = new Vector2(0, jumpSpeed);
+        }
+        else if (currMove == "down")
+        {
 
+        }
+        else if (currMove == "left")
+        {
+
+        }
+        else if (currMove == "right")
+        {
+
+        }
     }
 
     private string[] getMoves()
