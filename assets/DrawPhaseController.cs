@@ -10,15 +10,17 @@ public class DrawPhaseController : MonoBehaviour
     private GameObject mob;
     private Animator anim;
     private Rigidbody2D bodyNinja;
+    private CircleCollider2D collider;
     RaycastHit2D hit;
     private bool groundedNinja = false;
+    private Collider2D floor;
     private Transform groundCheck;
 
     private DrawLine lines;
 
     private Button done;
 
-    private int[] angles;
+    private int[] angles = new int[3];
 
     private string[] moves = new string[3];
     private int currentMove = 0;
@@ -30,7 +32,7 @@ public class DrawPhaseController : MonoBehaviour
     public float jumpSpeed = 100.0f;
     public float gravity = .5f;
 
-    private GameObject floor;
+    //private GameObject floor;
 
     private void doneButton() //done button on click
     {
@@ -42,15 +44,16 @@ public class DrawPhaseController : MonoBehaviour
 
     private void Start()
     {
-        floor = GameObject.Find("groundcheck");
+        floor = GameObject.Find("groundCheck").GetComponent<Collider2D>();
         ninja = GameObject.FindWithTag("Player");
         //ninja.AddComponent<CharacterController>();
         bodyNinja = ninja.GetComponent<Rigidbody2D>();
         anim = ninja.GetComponent<Animator>();
         groundCheck = GameObject.Find("groundCheck").transform;
-        lines = GameObject.Find("Main Camera").GetComponent<DrawLine>();
+        lines = Camera.main.GetComponent<DrawLine>();
         done = GameObject.Find("Done").GetComponentInChildren<Button>();
         done.onClick.AddListener(doneButton);
+        collider = ninja.GetComponent<CircleCollider2D>();
     }
 
     private void Update()
@@ -58,17 +61,18 @@ public class DrawPhaseController : MonoBehaviour
 
         if (fighting == true) {
             fight();
-        }
-        else {
+        } else {
             angles = lines.angles;
         }
+
+        
 
         groundedNinja = Physics2D.Linecast(bodyNinja.transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));
 
         //Debug.Log("angles " + angles[0] + " " + angles[1] + " " + angles[2]);
 
-        Debug.Log("ninjaPos " + ninja.transform.position.x + " " + ninja.transform.position.y);
-        Debug.Log("ninjaGrd " + groundedNinja);
+        //Debug.Log("ninjaPos " + ninja.transform.position.x + " " + ninja.transform.position.y);
+        //Debug.Log("ninjaGrd " + groundedNinja);
     }
 
     private void fight()
@@ -76,7 +80,7 @@ public class DrawPhaseController : MonoBehaviour
         string currMove = moves[currentMove];
         if (currMove == "up")
         {
-            if (groundedNinja)
+            if (collider.IsTouching(floor))
             bodyNinja.velocity = new Vector2(0, jumpSpeed);
         }
         else if (currMove == "down")
@@ -92,7 +96,7 @@ public class DrawPhaseController : MonoBehaviour
 
         }
     }
-
+    
     private string[] getMoves()
     {
         string[] m = new string[angles.Length];

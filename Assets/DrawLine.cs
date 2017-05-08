@@ -16,7 +16,7 @@ public class DrawLine : MonoBehaviour
     //current number of lines drawn
     private int currLines = 0;
 
-    public int[] angles = new int[3];
+    public int[] angles = new int[MAX_LINES];
 
     private Button back;
     private Button done;
