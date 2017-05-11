@@ -56,8 +56,8 @@ namespace PixelSpriteGenerator
         {
             GenerateSprite();
             mob = GameObject.Find("mob");
-            mob.AddComponent<Rigidbody2D>();
-            mob.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            /*mob.AddComponent<Rigidbody2D>();
+            mob.GetComponent<Rigidbody2D>().gravityScale = 0f;*/
             tempPos = new Vector3();
             floatAmplitude = 0.25f;
             floatSpeed = 2.5f;

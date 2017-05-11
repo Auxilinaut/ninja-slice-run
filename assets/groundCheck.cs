@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class groundCheck : MonoBehaviour {
 
+    public bool ninjaGrounded;
 	// Use this for initialization
 	void Start () {
-		
+        ninjaGrounded = false;
 	}
 	
 	// Update is called once per frame
@@ -14,11 +15,13 @@ public class groundCheck : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
-        if (col.transform.tag == "Player")
-        {
-            Debug.Log("collided in floor");
-        }
+        ninjaGrounded = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        ninjaGrounded = false;
     }
 }
