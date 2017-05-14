@@ -14,7 +14,7 @@ public class DrawLine : MonoBehaviour
     private static int MAX_LINES = 3;
 
     //current number of lines drawn
-    private int currLines = 0;
+    public int currLines = 0;
 
     public int[] angles = new int[MAX_LINES];
 

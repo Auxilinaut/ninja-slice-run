@@ -59,8 +59,8 @@ namespace PixelSpriteGenerator
             /*mob.AddComponent<Rigidbody2D>();
             mob.GetComponent<Rigidbody2D>().gravityScale = 0f;*/
             tempPos = new Vector3();
-            floatAmplitude = 0.25f;
-            floatSpeed = 2.5f;
+            floatAmplitude = 2.0f;
+            floatSpeed = 2.0f;
         }
 
         private void GetTemplate()
@@ -123,19 +123,27 @@ namespace PixelSpriteGenerator
             tex.filterMode = FilterMode.Point;
 
             var cmpts = new Type[1] { typeof(SpriteRenderer) };
+            if (mob)
+            {
+                Destroy(mob);
+            }
+
             var go = new GameObject("mob", cmpts);
+            mob = GameObject.Find("mob");
+
             var theSr = go.GetComponent<SpriteRenderer>();
 
             theSr.sprite = Sprite.Create(tex, new Rect(0, 0, (float)width, (float)height), new Vector2(0.5f, 0.5f), 32f);
 
             theSr.transform.localScale = new Vector3(-10.0f, -10.0f, -10.0f);
-            theSr.transform.position = new Vector2(9.4f, -1);
+            theSr.transform.position = new Vector2(9.4f, -4);
         }
 
         // They'll be moving around a lot
         void Update()
         {
             tempPos.Set(9.4f, -1 + floatAmplitude * Mathf.Sin(floatSpeed * Time.time));
+            if (mob)
             mob.transform.position = tempPos;
             //Debug.Log("mobPos " + mob.transform.position.x + " " + mob.transform.position.y);
         }
